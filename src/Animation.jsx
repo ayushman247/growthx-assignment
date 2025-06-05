@@ -1,13 +1,33 @@
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { ReactComponent as StarBust } from './assets/starburst-four-point-icon.svg'
 import AnimatedTriangular from "./components/Triangle"
 
 export default function Animation() {
+   const [isAnimating, setIsAnimating] = useState(false)
+  const [key, setKey] = useState(0)
+
+  const triggerAnimation = () => {
+    setIsAnimating(false)
+    setTimeout(() => {
+      setKey((prev) => prev + 1)
+      setIsAnimating(true)
+    }, 100)
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black space-y-6">
-      {/* Parent motion.div for synchronized upward movement */}
+      <motion.button
+        onClick={triggerAnimation}
+        className="absolute bottom-10 z-10 bg-gradient-to-r from-purple-600 to-blue-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-xl flex items-center gap-2"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span>Play Animation</span>
+      </motion.button>
+      {isAnimating && (
       <motion.div
+      key={key}
         initial={{ y: 0 }}
         animate={{ y: [0, -50, -50] }}
         transition={{
@@ -38,7 +58,7 @@ export default function Animation() {
         </motion.div>
 
         <div className="flex justify-center">
-          <AnimatedTriangular />
+          <AnimatedTriangular isAnimating={isAnimating}/>
         </div>
 
         <motion.div
@@ -56,6 +76,7 @@ export default function Animation() {
           ELEVATE
         </motion.div>
       </motion.div>
+       )}
     </div>
   )
 }
