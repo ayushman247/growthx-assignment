@@ -162,6 +162,9 @@ The animation is fully responsive and adapts to different screen sizes:
 - [ ] Animation timeline visualization
 - [ ] Export animation as video/GIF
 
+## Loom Recording
+(https://drive.google.com/file/d/1keJZ91aDL2mADpa0-0E7ttDMJP-Si64W/view?usp=sharing)
+
 ---
 
 **Made with ❤️ and lots of ☕**
